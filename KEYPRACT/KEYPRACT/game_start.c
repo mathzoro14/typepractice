@@ -78,13 +78,13 @@ void game_start(int d)
 					j++;
 				}
 			}
-			if (ch == 8 && j > 0)
+			if (ch == 8 && j > 0) //백스페이스에 해당
 			{
 				input[j] = '\0';
 				j--;
 				printf("\b \b");
 			}
-			if (ch == 13)
+			if (ch == 13) //엔터키에 해당
 				if (j >= SIZE+(stage)*2)
 				{
 					input[SIZE+(stage)*2] = 0;
