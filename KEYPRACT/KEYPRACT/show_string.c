@@ -8,7 +8,7 @@ void show_string(char *p,int stage) {
 	}
 	else
 	{
-		for (i = 0;i < SIZE + stage * 2;i++) // 2´Ü°èºÎÅÍ ´ë¹®ÀÚ°¡ »ý¼º
+		for (i = 0;i < SIZE + stage * 2;i++) // 2단계 이상에서는 대소문자로 받기
 		{
 			if(rand()%2==0)
 				p[i] = 'a' + rand() % 26;
