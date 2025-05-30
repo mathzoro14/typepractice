@@ -4,11 +4,11 @@ void show_string(char *p,int stage) {
 	if (stage < 1)
 	{
 		for (i = 0; i < SIZE+stage*2; i++)
-			p[i] = 'a' + rand() % 26;
+			p[i] = 'a' + rand() % 25;
 	}
 	else
 	{
-		for (i = 0;i < SIZE + stage * 2;i++) // 2´Ü°èºÎÅÍ ´ë¹®ÀÚ°¡ »ý¼º
+		for (i = 0;i < SIZE + stage * 2;i++) // 2Â´ÃœÂ°Ã¨ÂºÃŽÃ…Ã Â´Ã«Â¹Â®Ã€ÃšÂ°Â¡ Â»Ã½Â¼Âº
 		{
 			if(rand()%2==0)
 				p[i] = 'a' + rand() % 26;
