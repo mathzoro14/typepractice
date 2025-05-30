@@ -4,7 +4,7 @@ void show_string(char *p,int stage) {
 	if (stage < 1)
 	{
 		for (i = 0; i < SIZE+stage*2; i++)
-			p[i] = 'a' + rand() % 25;
+			p[i] = 'a' + rand() % 26;
 	}
 	else
 	{
