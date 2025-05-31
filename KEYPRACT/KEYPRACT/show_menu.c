@@ -2,7 +2,7 @@
 int show_menu(int *difficulty)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	int sel;
+	int sel; //sel에 사용자가 입력한 메뉴 번호 저장
 	char ch;
 	printf("===============\n");
 	printf("[1]게임 시작\n");
@@ -23,7 +23,7 @@ int show_menu(int *difficulty)
 			printf("\b \b");
 		}
 		system("cls");
-		return 1;
+		return 1; //main 함수에 1 반환 시 게임 시작
 		break;
 	}
 	case 2:
@@ -39,9 +39,9 @@ int show_menu(int *difficulty)
 		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 		printf("================================\n");
 		printf("난이도를 선택하세요 ▶ ");
-		scanf("%d", difficulty);
+		scanf("%d", difficulty); //difficulty 값 수정
 		system("cls");
-		return 0;
+		return 0; //main함수에 0반환 시 메뉴 다시 표시
 		break;
 	}
 	case 3:
