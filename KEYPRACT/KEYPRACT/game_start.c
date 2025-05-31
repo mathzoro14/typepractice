@@ -2,7 +2,7 @@
 void game_start(int d) 
 {
 	int stage=d-1;
-	char word[30], input[30] = {'\0'}, ch;
+	char word[30] = {0}, input[30] = {0}, ch;
 	int s_time = clock(), j = 0,cnt=0,score=0;
 	int time_limit, size, goal_score, time_bonus, problem_count;
 
@@ -87,7 +87,7 @@ void game_start(int d)
 				}
 				system("cls");
 				memset(input, 0, sizeof(input));
-				show_string(word, stage);
+				show_string(word, d);
 				s_time = clock();
 				j = 0;
 			}
@@ -159,7 +159,7 @@ void game_start(int d)
 					}
 					system("cls");
 					memset(input, 0, sizeof(input));
-					show_string(word,stage);
+					show_string(word,d);
 					s_time = clock();
 					j = 0;
 				}
