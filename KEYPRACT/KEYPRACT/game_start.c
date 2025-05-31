@@ -57,7 +57,7 @@ void game_start(int d)
 						printf("\n정답입니다!\n");
 						Sleep(500);
 						cnt++;
-						score += CORRECT + ((time_limit - clock() + s_time) / 1000) * time_bonus;
+						score += CORRECT + (((time_limit - (clock() - s_time)) / 1000) * time_bonus);
 						if ((goal_score - score) >= 0)
 							printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
 						else
@@ -129,7 +129,7 @@ void game_start(int d)
 						printf("\n정답입니다!\n");
 						Sleep(500);
 						cnt++;
-						score += CORRECT + ((time_limit - (clock() + s_time))/ 1000)*time_bonus;
+						score += CORRECT + (((time_limit - (clock() - s_time))/ 1000)*time_bonus);
 						if((goal_score - score)>=0)
 							printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
 						else
