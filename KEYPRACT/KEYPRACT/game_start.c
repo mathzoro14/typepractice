@@ -85,6 +85,11 @@ void game_start(int d)
 				{
 					printf("\n시간초과입니다.");
 					Sleep(500);
+					if ((goal_score - score) >= 0)
+						printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
+					else
+						printf("단계: %d,맞춘 문제: %d,점수 조건은 클리어했습니다.", d, cnt);
+					Sleep(1500);
 				}
 				system("cls");
 				memset(input, 0, sizeof(input));
@@ -162,6 +167,11 @@ void game_start(int d)
 					{
 						printf("\n틀렸습니다.\n");
 						Sleep(500);
+						if ((goal_score - score) >= 0)
+							printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
+						else
+							printf("단계: %d,맞춘 문제: %d,점수 조건은 클리어했습니다.", d, cnt);
+						Sleep(1500);
 					}
 					system("cls");
 					memset(input, 0, sizeof(input));
