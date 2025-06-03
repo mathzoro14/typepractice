@@ -75,6 +75,7 @@ void game_start(int d)
 								printf("\b \b");
 							}
 							system("cls");
+							fflush(stdin);
 							memset(input, 0, sizeof(input)); //타이머 구현을 위해 비우기
 							game_start(d);
 						}
@@ -120,6 +121,11 @@ void game_start(int d)
 				j--;
 				printf("\b \b");
 			}
+			if (ch == 8 && j == 0) //추가
+			{
+				input[j] = '\0';
+				printf("\b \b");
+			}
 			if (ch == 13) //엔터키에 해당
 				if (j >= size)
 				{
@@ -159,6 +165,7 @@ void game_start(int d)
 					}
 					system("cls");
 					memset(input, 0, sizeof(input));
+					fflush(stdin);
 					show_string(word,d);
 					s_time = clock();
 					j = 0;
