@@ -4,6 +4,7 @@ int show_menu(int *difficulty)
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	int sel ; //sel에 사용자가 입력한 메뉴 번호 저장
 	char ch;
+	printf("현재 난이도: %d\n", *difficulty);
 	printf("===============\n");
 	printf("[1]게임 시작\n");
 	printf("[2]난이도 설정\n");
