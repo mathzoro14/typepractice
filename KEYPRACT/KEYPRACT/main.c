@@ -19,3 +19,5 @@ int main() {
 //difficulty 1 = 쉬움
 //difficulty 2 = 보통
 //difficulty 3 = 어려움
+
+// 화이팅
