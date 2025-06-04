@@ -1,5 +1,7 @@
 #include "key.h"
-int main() {
+
+int main() 
+{
 	srand((unsigned)time(0));
 	int run = 1;
 	int difficulty = 1;
@@ -7,18 +9,21 @@ int main() {
 	while (run)
 	{
 		int result = show_menu(&difficulty);
-		if (result == -1) run = 0;
+		if (result == -1)
+			run = 0;
+		
 		if (result == 1)
 		{
-			if (difficulty == 4) {
+			if (difficulty == 4)
+			{
 				int infinite_result = game_start_infinite();
 				if (infinite_result == 0) continue;
 				else break;
 			}
-			else {
+			else 
 				game_start(difficulty);
-				break;
-			}
+				
+			
 		}
 	}
 }
