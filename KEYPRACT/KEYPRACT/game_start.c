@@ -77,7 +77,8 @@ void game_start(int d)
 							system("cls");
 							fflush(stdin);
 							memset(input, 0, sizeof(input)); //타이머 구현을 위해 비우기
-							game_start(d);
+							if (d < 3) game_start(d);
+							else game_start_infinite();
 						}
 					}
 				}

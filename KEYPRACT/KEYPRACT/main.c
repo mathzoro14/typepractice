@@ -10,8 +10,15 @@ int main() {
 		if (result == -1) run = 0;
 		if (result == 1)
 		{
-			game_start(difficulty);
-			break;
+			if (difficulty == 4) {
+				int infinite_result = game_start_infinite();
+				if (infinite_result == 0) continue;
+				else break;
+			}
+			else {
+				game_start(difficulty);
+				break;
+			}
 		}
 	}
 }

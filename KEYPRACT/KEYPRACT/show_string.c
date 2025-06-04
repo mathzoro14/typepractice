@@ -7,8 +7,10 @@ void show_string(char *p,int difficulty)
 		size = EASY_SIZE;
 	else if (difficulty == 2)
 		size = NORMAL_SIZE;
-	else 
+	else if (difficulty == 3)
 		size = HARD_SIZE;
+	else
+		size = INFINITE_SIZE;
 
 	for (int i = 0;i < size;i++)
 	{

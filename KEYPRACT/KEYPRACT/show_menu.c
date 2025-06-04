@@ -38,7 +38,9 @@ int show_menu(int *difficulty)
 			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 			printf("[2]Normal   ");
 			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
-			printf("[3]Hard\n");
+			printf("[3]Hard   ");
+			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+			printf("[4]INFINITE\n");
 			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 			printf("================================\n");
 			printf("난이도를 선택하세요 ▶ ");
