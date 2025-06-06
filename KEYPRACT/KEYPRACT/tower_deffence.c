@@ -39,7 +39,7 @@ void update(LIST* ppre, LIST* p, LINE l[],int *life) //최초 호출 : (NULL, head, 
 		GotoXY(0, 4);
 		p->x += l[p->y].speed;
 		if (p->p != NULL)
-			update(p, p->p, l,*life);
+			update(p, p->p, l,life);
 	}
 
 
@@ -130,7 +130,7 @@ void tower_deffence()
 		if (life <= 0)
 		{
 			system("cls");
-			printf("game over");
+			printf("game over\n");
 			return;
 		}
 		if (END < clock() - sttime)
