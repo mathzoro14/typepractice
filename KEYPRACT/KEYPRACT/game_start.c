@@ -86,6 +86,7 @@ void game_start(int d)
 						if (problem_num >= problem_count)
 						{
 							printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+							Sleep(1000);
 							x = 1;
 						}
 					}
@@ -101,6 +102,7 @@ void game_start(int d)
 					if (problem_num >= problem_count)
 					{
 						printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+						Sleep(1000);
 						x = 1;
 					}
 					Sleep(1000);
@@ -184,6 +186,7 @@ void game_start(int d)
 						if (problem_num >= problem_count)
 						{
 							printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+							Sleep(1000);
 							x = 1;
 						}
 					}
@@ -198,6 +201,7 @@ void game_start(int d)
 						if (problem_num >= problem_count)
 						{
 							printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+							Sleep(1000);
 							x = 1;
 						}
 						Sleep(1000);

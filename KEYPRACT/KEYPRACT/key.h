@@ -39,9 +39,16 @@
 #define EASY_AND_NORMAL_COUNT 10
 #define HARD_COUNT 15
 
+//타워 디펜스 용
+#define END 10000 // wave time
+#define UPDATETIME 100 //1회 업데이트 시간
+#define LETTER 120 //화면 끝까지 채우는 데 필요한 글자 수
+#define TRACK 3 //출력 트랙 수
+
 //함수 선언부
 void show_string(char *p,int s);
 int show_menu(int* p);
 void game_start(int d);
 int game_start_infinite();
 void gotoxy(int x, int y);
+void tower_deffence();

@@ -20,10 +20,10 @@ int main()
 				if (infinite_result == 0) continue;
 				else break;
 			}
-			else 
+			else if (difficulty < 4)
 				game_start(difficulty);
-				
-			
+			else
+				tower_deffence();
 		}
 	}
 }

@@ -3,7 +3,7 @@ int show_menu(int* difficulty)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	int sel; //sel에 사용자가 입력한 메뉴 번호 저장
-	char ch, * difficulty_list[] = {"Easy", "Normal", "Hard", "INFINITE"}; //난이도 리스트
+	char ch, * difficulty_list[] = {"Easy", "Normal", "Hard", "INFINITE","Word_Deffence"}; //난이도 리스트
 	while (1)
 	{
 		printf("현재 난이도: %s\n", difficulty_list[*difficulty-1]);
@@ -42,7 +42,9 @@ int show_menu(int* difficulty)
 				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
 				printf("[3]Hard   ");
 				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
-				printf("[4]INFINITE\n");
+				printf("[4]INFINITE   ");
+				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_BLUE);
+				printf("[5]word_deffence\n");
 				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 				printf("================================\n");
 				printf("난이도를 선택하세요 ▶ ");
