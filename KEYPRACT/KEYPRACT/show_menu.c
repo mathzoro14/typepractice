@@ -137,7 +137,26 @@ int show_menu(int* difficulty)
 							{
 								gotoxy(57, 15);
 								if (num1 == 0)
+								{
+									switch (*difficulty)
+									{
+									case 1:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+										break;
+									case 2:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+										break;
+									case 3:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+										break;
+									case 4:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+										break;
+									}
+
 									printf("< [%s] >", difficulty_list[*difficulty - 1]);
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+								}
 								else
 									printf("< [-] >                 ");
 							}
@@ -145,11 +164,34 @@ int show_menu(int* difficulty)
 							{
 								gotoxy(57, 15);
 								if (num1 == 0)
+								{
+									switch (*difficulty)
+									{
+									case 1:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+										break;
+									case 2:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+										break;
+									case 3:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+										break;
+									case 4:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+										break;
+									}
+
 									printf("  [%s]  ", difficulty_list[*difficulty - 1]);
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+								}
 								else
 									printf("  [-]                   ");
+								if(num1 == 1)
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_BLUE);
 								gotoxy(53, 10);
 								printf("< [%s] >", mode_list[num1]);
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
 							}
 						}
 						if (num >= 1) // 위로 이동
@@ -164,11 +206,33 @@ int show_menu(int* difficulty)
 						{
 							if (num == 0)
 							{
+								if(num1 == 1)
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_BLUE);
 								gotoxy(53, 10 + num * 5);
 								printf("  [%s]    ", mode_list[num1]);
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 								gotoxy(57, 15);
 								if (num1 == 0)
+								{
+									switch (*difficulty)
+									{
+									case 1:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+										break;
+									case 2:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+										break;
+									case 3:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+										break;
+									case 4:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+										break;
+									}
+
 									printf("< [%s] >", difficulty_list[*difficulty - 1]);
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+								}
 								else
 									printf("< [-] >                 ");
 							}
@@ -176,7 +240,26 @@ int show_menu(int* difficulty)
 							{
 								gotoxy(57, 10 + num * 5);
 								if (num1 == 0)
+								{
+									switch (*difficulty)
+									{
+									case 1:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+										break;
+									case 2:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+										break;
+									case 3:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+										break;
+									case 4:
+										SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+										break;
+									}
+
 									printf("  [%s]  ", difficulty_list[*difficulty - 1]);
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+								}
 								else
 									printf("  [-]                   ");
 							}
@@ -196,14 +279,48 @@ int show_menu(int* difficulty)
 								num1--;
 								gotoxy(53, 10);
 								printf("< [%s] >  ", mode_list[num1]);
+								switch (*difficulty)
+								{
+								case 1:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+									break;
+								case 2:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+									break;
+								case 3:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+									break;
+								case 4:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+									break;
+								}
+
 								gotoxy(57, 15);
 								printf("  [%s]  ", difficulty_list[*difficulty - 1]);
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 							}
 							if (num == 1 && *difficulty >=2 && num1 == 0)
 							{
 								*difficulty -= 1;
+								switch (*difficulty)
+								{
+								case 1:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+									break;
+								case 2:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+									break;
+								case 3:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+									break;
+								case 4:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+									break;
+								}
+
 								gotoxy(57, 15);
 								printf("< [%s] >     ", difficulty_list[*difficulty - 1]);
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 							}
 							gotoxy(x, y + num * (3 + screen * 2));
 							printf(">");
@@ -218,16 +335,35 @@ int show_menu(int* difficulty)
 							if (num == 0 && num1 <= 0)
 							{
 								num1++;
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_BLUE);
 								gotoxy(53, 10);
 								printf("< [%s] >  ", mode_list[num1]);
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 								gotoxy(57, 15);
 								printf("  [-]                   ");
 							}
 							if (num == 1 && *difficulty <= 3 && num1 == 0)
 							{
 								*difficulty += 1;
+								switch (*difficulty)
+								{
+								case 1:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+									break;
+								case 2:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+									break;
+								case 3:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+									break;
+								case 4:
+									SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+									break;
+								}
+
 								gotoxy(57, 15);
 								printf("< [%s] >  ", difficulty_list[*difficulty - 1]);
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 							}
 							gotoxy(x, y + num * (3 + screen * 2));
 							printf(">");
@@ -251,7 +387,9 @@ int show_menu(int* difficulty)
 							gotoxy(53, 10);
 							printf("< [%s] >", mode_list[num1]);
 							gotoxy(57, 15);
+							SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 							printf("[%s]", difficulty_list[*difficulty - 1]);
+							SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 							gotoxy(x, y + num * (3 + screen * 2));
 							printf(">");
 							break;

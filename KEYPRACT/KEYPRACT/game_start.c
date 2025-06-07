@@ -14,6 +14,29 @@ void game_ready()
 	system("cls");
 }
 
+void corr_sound()
+{
+	printf("\n정답입니다!\n");
+	Beep(440, 500);
+	Beep(554, 500);
+	Beep(659, 500); //딩동댕
+	Sleep(500);
+}
+
+void timeover_sound()
+{
+	printf("\n시간초과입니다.");
+	Beep(880, 500); //땡
+	Sleep(500);
+}
+
+void wrong_sound()
+{
+	printf("\n틀렸습니다.\n");
+	Beep(880, 500); //땡
+	Sleep(500);
+}
+
 void game_start(int d) 
 {
 	game_ready();
@@ -71,11 +94,7 @@ void game_start(int d)
 					input[size] = 0;
 					if (!strcmp(word, input))
 					{
-						printf("\n정답입니다!\n");
-						Beep(440, 500);
-						Beep(554, 500);
-						Beep(659, 500); //딩동댕
-						Sleep(500);
+						corr_sound();
 						cnt++;
 						problem_num++;
 						score += CORRECT + (((time_limit - (clock() - s_time)) / 1000) * time_bonus);
@@ -103,9 +122,7 @@ void game_start(int d)
 				}
 				else
 				{
-					printf("\n시간초과입니다.");
-					Beep(880, 500); //땡
-					Sleep(500);
+					timeover_sound();
 					problem_num++;
 					if ((goal_score - score) >= 0)
 						printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
@@ -165,11 +182,7 @@ void game_start(int d)
 					input[size] = 0;
 					if (!strcmp(word, input))
 					{
-						printf("\n정답입니다!\n");
-						Beep(440, 500);
-						Beep(554, 500);
-						Beep(659, 500); //딩동댕
-						Sleep(500);
+						corr_sound();
 						cnt++;
 						problem_num++;
 						score += CORRECT + (((time_limit - (clock() - s_time)) / 1000) * time_bonus);
@@ -196,9 +209,7 @@ void game_start(int d)
 					}
 					else
 					{
-						printf("\n틀렸습니다.\n");
-						Beep(880, 500); //땡
-						Sleep(500);
+						wrong_sound();
 						problem_num++;
 						if ((goal_score - score) >= 0)
 							printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
