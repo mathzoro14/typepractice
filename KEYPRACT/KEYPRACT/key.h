@@ -40,8 +40,8 @@
 #define HARD_COUNT 15
 
 //타워 디펜스 용
-#define END 10000 // wave time
-#define UPDATETIME 100 //1회 업데이트 시간
+#define END 15000 // wave time
+#define UPDATETIME 200 //1회 업데이트 시간
 #define LETTER 120 //화면 끝까지 채우는 데 필요한 글자 수
 #define TRACK 3 //출력 트랙 수
 

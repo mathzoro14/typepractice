@@ -83,7 +83,8 @@ void cmp_all(LIST* ppre, LIST* ptr, char ar[])
 void clear(int wave)
 {
 	system("cls");
-	gotoxy(0, 0);
+	screen_deco();
+	gotoxy(43, 15);
 	printf("clear! wave %d will start soon.", wave);
 	Sleep(2000);
 
