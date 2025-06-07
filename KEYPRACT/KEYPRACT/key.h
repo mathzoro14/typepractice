@@ -50,5 +50,4 @@ void show_string(char *p,int s);
 int show_menu(int* p);
 void game_start(int d);
 int game_start_infinite();
-void gotoxy(int x, int y);
 void tower_deffence();

@@ -1,10 +1,4 @@
 #include "key.h"
-void GotoXY(int x, int y) {
-	COORD Pos;
-	Pos.X = x;
-	Pos.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Pos);
-}
 
 typedef struct line {
 	int cooltime, last_generate_time;
@@ -34,9 +28,9 @@ void update(LIST* ppre, LIST* p, LINE l[],int *life) //최초 호출 : (NULL, head, 
 	}
 	else
 	{
-		GotoXY((int)(p->x), p->y);
+		gotoxy((int)(p->x), p->y);
 		printf("%s", p->word);
-		GotoXY(0, 4);
+		gotoxy(0, 4);
 		p->x += l[p->y].speed;
 		if (p->p != NULL)
 			update(p, p->p, l,life);
@@ -80,8 +74,8 @@ void cmp_all(LIST* ppre, LIST* ptr, char ar[])
 		cmp_all(ppre, aa, ar);
 		return;
 	}
-	GotoXY(0, 5);
-	GotoXY(0, 4);
+	gotoxy(0, 5);
+	gotoxy(0, 4);
 	cmp_all(ptr, ptr->p, ar);
 
 }
@@ -89,7 +83,7 @@ void cmp_all(LIST* ppre, LIST* ptr, char ar[])
 void clear(int wave)
 {
 	system("cls");
-	GotoXY(0, 0);
+	gotoxy(0, 0);
 	printf("clear! wave %d will start soon.", wave);
 	Sleep(2000);
 
@@ -108,6 +102,7 @@ int count_node(LIST* head)
 
 void tower_deffence() 
 {
+	game_ready();
 	int wave = 1, sttime = clock(), last_update_time = clock(),life=3;
 	int j = 0;
 	char ch, input[20] = { 0 };
@@ -124,9 +119,9 @@ void tower_deffence()
 	head->x = 0;
 	update(NULL, head, l,&life);
 	while (1) {
-		GotoXY(0, 4);
+		gotoxy(0, 4);
 		printf("%s         ", input);
-		GotoXY(0, 4);
+		gotoxy(0, 4);
 		if (life <= 0)
 		{
 			system("cls");
@@ -161,7 +156,7 @@ void tower_deffence()
 		{
 			system("cls");
 			update(NULL, head, l,&life);
-			GotoXY(0, 3);
+			gotoxy(0, 3);
 			for (int i = 0; i < LETTER; i++)
 				printf("-");
 

@@ -1,6 +1,22 @@
 #include "key.h"
+
+void game_ready()
+{
+	screen_deco();
+	gotoxy(57, 15);
+	printf("Ready?");
+	Sleep(1000);
+	system("cls");
+	screen_deco();
+	gotoxy(57, 15);
+	printf("Start!");
+	Sleep(500);
+	system("cls");
+}
+
 void game_start(int d) 
 {
+	game_ready();
 	int stage=d-1;
 	char word[30] = {0}, input[30] = {0}, ch;
 	int s_time = clock(), j = 0,cnt=0,score=0,problem_num=0, x=0;
@@ -39,7 +55,7 @@ void game_start(int d)
 		return;
 	}
 
-	printf("%d번째 단어\n", problem_num+1);
+	printf("단어 수: %d/%d\n", problem_num+1,problem_count);
 	show_string(word,d);
 	printf("남은 시간: %d초\n", (time_limit - (clock() - s_time)) / 1000);
 
@@ -71,14 +87,8 @@ void game_start(int d)
 						if (score >= goal_score) {
 							printf("\n축하합니다. %d단계를 클리어 하셨습니다.\n", d);
 							Sleep(1000);
-							printf("3초 뒤 %d단계를 시작합니다.\n", d + 1);
+							printf("잠시 후에 %d단계로 이어집니다.\n", d + 1);
 							d++;
-							for (int i = 0; i < 3; i++)
-							{
-								printf("%d", 3 - i);
-								Sleep(1000);
-								printf("\b \b");
-							}
 							system("cls");
 							fflush(stdin);
 							memset(input, 0, sizeof(input)); //타이머 구현을 위해 비우기
@@ -109,7 +119,7 @@ void game_start(int d)
 				}
 				system("cls");
 				memset(input, 0, sizeof(input));
-				printf("%d번째 단어\n", problem_num+1);
+				printf("단어 수: %d/%d\n", problem_num + 1, problem_count);
 				show_string(word, d);
 				s_time = clock();
 				j = 0;
@@ -117,7 +127,7 @@ void game_start(int d)
 			else
 			{
 				system("cls");
-				printf("%d번째 단어\n", problem_num+1);
+				printf("단어 수: %d/%d\n", problem_num + 1, problem_count);
 				printf("%s\n", word);
 				printf("남은 시간: %d초\n", (time_limit - (clock() - s_time)) / 1000);
 				printf("%s", input);
@@ -172,14 +182,8 @@ void game_start(int d)
 						{
 							printf("\n축하합니다. %d단계를 클리어 하셨습니다.\n", d);
 							Sleep(1000);
-							printf("3초 뒤 %d단계를 시작합니다.\n", d + 1);
+							printf("잠시 후에 %d단계로 이어집니다.\n", d + 1);
 							d++;
-							for (int i = 0; i < 3; i++)
-							{
-								printf("%d", 3 - i);
-								Sleep(1000);
-								printf("\b \b");
-							}
 							system("cls");
 							memset(input, 0, sizeof(input));
 						}
@@ -209,7 +213,7 @@ void game_start(int d)
 					system("cls");
 					memset(input, 0, sizeof(input));
 					fflush(stdin);
-					printf("%d번째 단어\n", problem_num+1);
+					printf("단어 수: %d/%d\n", problem_num + 1, problem_count);
 					show_string(word, d);
 					s_time = clock();
 					j = 0;

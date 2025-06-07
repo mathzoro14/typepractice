@@ -1,6 +1,7 @@
 #include "key.h"
 int game_start_infinite()
 {
+	game_ready();
 	char word[30] = { 0 }, input[30] = { 0 }, ch;
 	int s_time, j=0, fail = 0, score = 0, count_infinite = 0;
 	int time_limit = INFINITE_TIME_LIMIT_1;
