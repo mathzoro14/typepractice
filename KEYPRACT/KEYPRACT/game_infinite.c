@@ -1,4 +1,83 @@
 #include "key.h"
+
+int game_pause(int d)
+{
+	int num = 0;
+	system("cls");
+	screen_deco();
+	gotoxy(50, 10);
+	printf("계속 하기");
+	gotoxy(50, 13);
+	printf("다시 하기");
+	gotoxy(50, 16);
+	printf("나가기");
+	gotoxy(48, 10);
+	printf(">");
+	while (1)
+	{
+		if (_kbhit())
+		{
+			char ch = _getch();
+			if (ch == 72) // 위 방향키
+			{
+				if (num > 0)
+				{
+					gotoxy(48, 10 + num * 3);
+					printf(" ");
+					num--;
+					gotoxy(48, 10 + num * 3);
+					printf(">");
+				}
+			}
+			else if (ch == 80) // 아래 방향키
+			{
+				if (num < 2)
+				{
+					gotoxy(48, 10 + num * 3);
+					printf(" ");
+					num++;
+					gotoxy(48, 10 + num * 3);
+					printf(">");
+				}
+			}
+			else if (ch == 13) // Enter 키
+			{
+				if (num == 0)
+					return;
+				
+				else if (num == 1)
+				{
+					if (d == 4)
+					{
+						system("cls");
+						game_start_infinite();
+						return 1;
+					}
+						
+					else if (d == 5)
+					{
+						system("cls");
+						tower_defence();
+						return 1;
+					}
+					else
+					{
+						system("cls");
+						game_start(d);
+						return 1;
+					}
+				}
+				else if (num == 2)
+				{
+					system("cls");
+					return 2;
+				}
+			}
+		}
+		Sleep(100);
+	}
+}
+
 int game_start_infinite()
 {
 	game_ready();
@@ -15,9 +94,10 @@ int game_start_infinite()
 		else time_limit = INFINITE_TIME_LIMIT_5;
 		
 		system("cls");
-		printf("INFINITE_MODE | 점수: %d | 문제 번호: %d | 실패: %d/3\n", score, count_infinite + 1, fail);
+		screen_deco();
+		gotoxy(2, 1);
+		printf("INFINITE_MODE | 점수: %d | 문제 번호: %d | 실패: %d/3", score, count_infinite + 1, fail);
 		show_string(word, 4);
-		printf("\n");
 		memset(input, 0, sizeof(input));
 		j = 0;
 		s_time = clock();
@@ -26,23 +106,29 @@ int game_start_infinite()
 			if ((clock() - s_time) % 1000 == 0) 
 			{
 				system("cls");
-				printf("INFINITE_MODE | 점수: %d | 문제 번호: %d | 실패: %d/3\n", score, count_infinite + 1, fail);
+				screen_deco();
+				gotoxy(2, 1);
+				printf("INFINITE_MODE | 점수: %d | 문제 번호: %d | 실패: %d/3", score, count_infinite + 1, fail);
+				gotoxy(2, 2);
+				printf("남은 시간: %d초", (time_limit - clock() + s_time) / 1000);
+				gotoxy(5, 4);
 				printf("%s", word);
-				printf("남은 시간: %d초\n", (time_limit - clock() + s_time) / 1000);
+				gotoxy(5, 5);
 				printf("%s", input);
 			}
 			if (clock() - s_time >= time_limit)
 			{
 				if(!strcmp(word, input)) 
 				{
-					printf("\n정답입니다!\n");
 					score += CORRECT + ((time_limit - clock() + s_time) / 1000) * time_bonus;
 					count_infinite++;
+					corr_sound();
 				}
 				else 
 				{
-					printf("\n시간 초과!\n");
 					fail++;
+					count_infinite++;
+					timeover_sound();
 				}
 				Sleep(1000);
 				break;
@@ -52,8 +138,10 @@ int game_start_infinite()
 				ch = _getch();
 				if (ch == 27)
 				{
-					return -1;
-					break;
+					int game_result;
+					game_result = game_pause(4);
+					if (game_result == 2 || game_result == 1)
+						return 0;
 				}
 				if (ch == 8 && j > 0) 
 				{
@@ -61,22 +149,31 @@ int game_start_infinite()
 					printf("\b \b");
 					continue;
 				}
-				if (ch == 13 && j == size) 
+				if (ch == 13) 
 				{
-					*(input + size) = '\0';
-					if (!strcmp(word, input)) 
+					if (j == size)
 					{
-						printf("\n정답!\n");
-						score += CORRECT + ((time_limit - clock() + s_time) / 1000) * time_bonus;
-						count_infinite++;
+						*(input + size) = '\0';
+						if (!strcmp(word, input)) 
+						{
+							score += CORRECT + ((time_limit - clock() + s_time) / 1000) * time_bonus;
+							count_infinite++;
+							corr_sound();
+						}
+						else 
+						{
+							fail++;
+							count_infinite++;
+							wrong_sound();
+						}
+						Sleep(1000);
+						break;
 					}
-					else 
+					else
 					{
-						printf("\n오답!\n");
-						fail++;
+						gotoxy(30, 7);
+						printf("글자수가 부족합니다.");
 					}
-					Sleep(1000);
-					break;
 				}
 				if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
 				{
@@ -91,8 +188,9 @@ int game_start_infinite()
 		}
 		if (fail >= 3) 
 		{
-			printf("게임 오버!\n최종 점수:%d\n", score);
-			Sleep(1000);
+			gotoxy(30, 7);
+			printf("게임 오버! 최종 점수: %d", score);
+			Sleep(2000);
 			system("cls");
 			
 			game_over_screen();

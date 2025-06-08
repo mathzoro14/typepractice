@@ -28,9 +28,9 @@ void update(LIST* ppre, LIST* p, LINE l[],int *life) //최초 호출 : (NULL, head, 
 	}
 	else
 	{
-		gotoxy((int)(p->x), p->y);
+		gotoxy((int)((p->x)+1), p->y+1);
 		printf("%s", p->word);
-		gotoxy(0, 4);
+		gotoxy(8, 5);
 		p->x += l[p->y].speed;
 		if (p->p != NULL)
 			update(p, p->p, l,life);
@@ -74,8 +74,8 @@ void cmp_all(LIST* ppre, LIST* ptr, char ar[])
 		cmp_all(ppre, aa, ar);
 		return;
 	}
-	gotoxy(0, 5);
-	gotoxy(0, 4);
+	gotoxy(1, 5);
+	gotoxy(1, 4);
 	cmp_all(ptr, ptr->p, ar);
 
 }
@@ -101,7 +101,7 @@ int count_node(LIST* head)
 	return 1;
 }
 
-void tower_deffence() 
+void tower_defence() 
 {
 	game_ready();
 	int wave = 1, sttime = clock(), last_update_time = clock(),life=3;
@@ -119,10 +119,12 @@ void tower_deffence()
 	head->y = 0;
 	head->x = 0;
 	update(NULL, head, l,&life);
+	gotoxy(2, 5);
+	printf("입력:");
 	while (1) {
-		gotoxy(0, 4);
-		printf("%s         ", input);
-		gotoxy(0, 4);
+		gotoxy(8, 5);
+		printf("%s", input);
+		gotoxy(8, 5);
 		if (life <= 0)
 		{
 			system("cls");
@@ -156,11 +158,25 @@ void tower_deffence()
 		if (UPDATETIME < clock() - last_update_time)
 		{
 			system("cls");
-			update(NULL, head, l,&life);
-			gotoxy(0, 3);
-			for (int i = 0; i < LETTER; i++)
-				printf("-");
+			screen_deco();
+			gotoxy(2, 5);
+			printf("입력:");
+			gotoxy(1, 4);
+			for (int i = 1; i < LETTER - 1; i++)
+			{
+				if (i == LETTER - 6)
+					printf("O");
+				else
+					printf("-");
+			}
 
+			gotoxy(100, 19);
+			printf("Wave: %d", wave);
+			gotoxy(100, 20);
+			printf("Life: %d", life);
+			gotoxy(60, 25);
+			printf("단어를 입력하고 엔터를 눌러 단어를 제거하세요.");
+			update(NULL, head, l, &life);
 			last_update_time = clock();
 		}
 		for (int i = 0; i < TRACK; i++)
@@ -180,7 +196,10 @@ void tower_deffence()
 			ch = _getch();
 			if (ch == 27)
 			{
-				break;
+				int game_result;
+				game_result = game_pause(5);
+				if (game_result == 2 || game_result == 1)
+					return 0;
 			}
 			if (((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) && j < 10)
 			{

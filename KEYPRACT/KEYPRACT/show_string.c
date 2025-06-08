@@ -25,5 +25,6 @@ void show_string(char *p,int difficulty)
 		}
 	}
 	
-	printf("%s\n", p);
+	gotoxy(5, 4);
+	printf("%s", p);
 }

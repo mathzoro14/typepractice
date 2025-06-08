@@ -50,6 +50,8 @@ void menu1()
 void menu2()
 {
 	screen_deco();
+	gotoxy(2, 2);
+	printf("  < [ESC키를 눌러서 돌아가기]\n");
 	int x = 40, y = 10;
 	gotoxy(x, y);
 	printf("모드 선택: ");
@@ -103,7 +105,7 @@ void game_method()
 	printf("게임 중 ESC 키: 잠시 중지 및 돌아가기 옵션 제공");
 	Sleep(1000);
 	gotoxy(2, 25);
-	printf("  < [엔터를 눌러서 돌아가기]\n");
+	printf("  < [ESC키를 눌러서 돌아가기]\n");
 }
 
 int show_menu(int* difficulty)
@@ -126,7 +128,19 @@ int show_menu(int* difficulty)
 			printf("\b ");
 			ch = _getch();
 			if (ch == 27)
-				break;
+			{
+				if (screen == 1 || screen == 2)
+				{
+					system("cls");
+					menu1();
+					x = 53;
+					y = 14;
+					num = 0;
+					screen = 0;
+					gotoxy(x, y + num * 3);
+					printf(">");
+				}
+			}
 			if (ch == 0 || ch == -32)
 			{
 				ch = _getch();
@@ -406,15 +420,6 @@ int show_menu(int* difficulty)
 							return -1;
 							break;
 					}
-				}
-				else if (screen == 2)
-				{
-					system("cls");
-					menu1();
-					num = 0;
-					screen = 0;
-					gotoxy(x, y + num * (3+screen*2));
-					printf(">");
 				}
 				else if (screen == 1 && num==2)
 				{

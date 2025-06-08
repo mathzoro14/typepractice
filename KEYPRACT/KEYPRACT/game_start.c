@@ -16,7 +16,8 @@ void game_ready()
 
 void corr_sound()
 {
-	printf("\n정답입니다!\n");
+	gotoxy(30, 7);
+	printf("정답입니다!");
 	Beep(440, 500);
 	Beep(554, 500);
 	Beep(659, 500); //딩동댕
@@ -25,14 +26,16 @@ void corr_sound()
 
 void timeover_sound()
 {
-	printf("\n시간초과입니다.");
+	gotoxy(30, 7);
+	printf("시간초과입니다.");
 	Beep(880, 500); //땡
 	Sleep(500);
 }
 
 void wrong_sound()
 {
-	printf("\n틀렸습니다.\n");
+	gotoxy(30, 7);
+	printf("틀렸습니다.");
 	Beep(880, 500); //땡
 	Sleep(500);
 }
@@ -52,8 +55,12 @@ void game_start(int d)
 	game_ready();
 	int stage=d-1;
 	char word[30] = {0}, input[30] = {0}, ch;
-	int s_time = clock(), j = 0,cnt=0,score=0,problem_num=0, x=0;
+	int s_time = clock(), j = 0, score=0,problem_num=0, x=0;
 	int time_limit, size, goal_score, time_bonus, problem_count;
+
+	system("cls");
+	screen_deco();
+	gotoxy(2, 1);
 
 	if (d == 1)
 	{
@@ -62,6 +69,7 @@ void game_start(int d)
 		goal_score = EASY_GOAL;
 		time_bonus = EASY_TIME_BONUS;
 		problem_count = EASY_AND_NORMAL_COUNT;
+		printf("난이도: Easy | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
 	}
 
 	else if (d == 2)
@@ -71,6 +79,7 @@ void game_start(int d)
 		goal_score = NORMAL_GOAL;
 		time_bonus = NORMAL_TIME_BONUS;
 		problem_count = EASY_AND_NORMAL_COUNT;
+		printf("난이도: Normal | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
 	}
 
 	else if (d == 3)
@@ -80,6 +89,7 @@ void game_start(int d)
 		goal_score = HARD_GOAL;
 		time_bonus = HARD_TIME_BONUS;
 		problem_count = HARD_COUNT;
+		printf("난이도: Hard | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
 	}
 
 	else
@@ -88,9 +98,10 @@ void game_start(int d)
 		return;
 	}
 
-	printf("단어 수: %d/%d\n", problem_num+1,problem_count);
 	show_string(word,d);
-	printf("남은 시간: %d초\n", (time_limit - (clock() - s_time)) / 1000);
+	gotoxy(2, 2);
+	printf("남은 시간: %d초", (time_limit - (clock() - s_time)) / 1000);
+	gotoxy(5, 5);
 
 
 	while (1)
@@ -105,26 +116,30 @@ void game_start(int d)
 					if (!strcmp(word, input))
 					{
 						corr_sound();
-						cnt++;
 						problem_num++;
-						score += CORRECT + (((time_limit - (clock() - s_time)) / 1000) * time_bonus);
+						score += CORRECT + ((( time_limit - (clock() - s_time)) / 1000) * time_bonus);
 						if ((goal_score - score) >= 0)
-							printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
-						else
-							printf("단계: %d,맞춘 문제: %d,점수 조건은 클리어했습니다.", d, cnt);
+						{
+							gotoxy(30, 7);
+							printf("남은 점수: %d", goal_score - score);
+						}
 						Sleep(1500);
 						if (score >= goal_score) {
-							printf("\n축하합니다. %d단계를 클리어 하셨습니다.\n", d);
+							gotoxy(30, 7);
+							printf("축하합니다. 이번 단계를 클리어 하셨습니다.");
 							Sleep(1000);
-							printf("잠시 후에 %d단계로 이어집니다.\n", d + 1);
+							gotoxy(30, 8);
+							printf("잠시 후에 다음 단계로 이어집니다.");
 							d++;
+							Sleep(1000);
 							system("cls");
 							fflush(stdin);
 							memset(input, 0, sizeof(input)); //타이머 구현을 위해 비우기
 						}
 						if (problem_num >= problem_count)
 						{
-							printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+							gotoxy(30, 7);
+							printf("정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.");
 							Sleep(1000);
 							x = 1;
 						}
@@ -135,10 +150,15 @@ void game_start(int d)
 					timeover_sound();
 					problem_num++;
 					if ((goal_score - score) >= 0)
-						printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
+					{
+						gotoxy(30, 7);
+						printf("남은 점수: %d", goal_score - score);
+					}
+					Sleep(1500);
 					if (problem_num >= problem_count)
 					{
-						printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+						gotoxy(30, 7);
+						printf("정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.");
 						Sleep(1000);
 						x = 1;
 					}
@@ -146,17 +166,36 @@ void game_start(int d)
 				}
 				system("cls");
 				memset(input, 0, sizeof(input));
-				printf("단어 수: %d/%d\n", problem_num + 1, problem_count);
+				screen_deco();
+				gotoxy(2, 1);
+				if(d==1)
+					printf("난이도: Easy | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+				if(d==2)
+					printf("난이도: Normal | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+				if(d==3)
+					printf("난이도: Hard | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
 				show_string(word, d);
 				s_time = clock();
 				j = 0;
+				gotoxy(2, 2);
+				printf("남은 시간: %d초", (time_limit - (clock() - s_time)) / 1000);
 			}
 			else
 			{
 				system("cls");
-				printf("단어 수: %d/%d\n", problem_num + 1, problem_count);
-				printf("%s\n", word);
-				printf("남은 시간: %d초\n", (time_limit - (clock() - s_time)) / 1000);
+				screen_deco();
+				gotoxy(2, 1);
+				if (d == 1)
+					printf("난이도: Easy | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+				if (d == 2)
+					printf("난이도: Normal | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+				if (d == 3)
+					printf("난이도: Hard | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+				gotoxy(5, 4);
+				printf("%s", word);
+				gotoxy(2, 2);
+				printf("남은 시간: %d초", (time_limit - (clock() - s_time)) / 1000);
+				gotoxy(5, 5);
 				printf("%s", input);
 				
 			}
@@ -165,7 +204,12 @@ void game_start(int d)
 		{
 			ch = _getch();
 			if (ch == 27)
-				break;
+			{
+				int game_result;
+				game_result = game_pause(d);
+				if (game_result == 2 || game_result == 1)
+					return 0;
+			}
 			if (j < size)
 			{
 				if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
@@ -175,44 +219,46 @@ void game_start(int d)
 					j++;
 				}
 			}
-			if (ch == 8 && j > 0) //백스페이스에 해당
+			if (ch == 8 && j >= 0) //백스페이스에 해당
 			{
-				input[j] = '\0';
-				j--;
-				printf("\b \b");
-			}
-			if (ch == 8 && j == 0) //추가
-			{
+				if (j > 0)
+					j--;
 				input[j] = '\0';
 				printf("\b \b");
 			}
-			if (ch == 13) //엔터키에 해당
+			if (ch == 13)
+			{					//엔터키에 해당
 				if (j >= size)
 				{
 					input[size] = 0;
 					if (!strcmp(word, input))
 					{
 						corr_sound();
-						cnt++;
 						problem_num++;
-						score += CORRECT + (((time_limit - (clock() - s_time)) / 1000) * time_bonus);
+						score += CORRECT + ((( time_limit - (clock() - s_time)) / 1000) * time_bonus);
 						if ((goal_score - score) >= 0)
-							printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
-						else
-							printf("단계: %d,맞춘 문제: %d,점수 조건은 클리어했습니다.", d, cnt);
+						{
+							gotoxy(30, 7);
+							printf("남은 점수: %d", goal_score - score);
+						}
+							
 						Sleep(1500);
 						if (score >= goal_score)
 						{
-							printf("\n축하합니다. %d단계를 클리어 하셨습니다.\n", d);
+							gotoxy(30, 7);
+							printf("축하합니다. 이번 단계를 클리어 하셨습니다.");
 							Sleep(1000);
-							printf("잠시 후에 %d단계로 이어집니다.\n", d + 1);
+							gotoxy(30, 8);
+							printf("잠시 후에 다음 단계로 이어집니다.");
 							d++;
+							Sleep(1000);
 							system("cls");
 							memset(input, 0, sizeof(input));
 						}
 						if (problem_num >= problem_count)
 						{
-							printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+							gotoxy(30, 7);
+							printf("정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.");
 							Sleep(1000);
 							x = 1;
 						}
@@ -222,10 +268,15 @@ void game_start(int d)
 						wrong_sound();
 						problem_num++;
 						if ((goal_score - score) >= 0)
-							printf("단계: %d,맞춘 문제: %d, 남은 점수: %d", d, cnt, goal_score - score);
+						{
+							gotoxy(30, 7);
+							printf("남은 점수: %d", goal_score - score);
+						}
+						Sleep(1500);
 						if (problem_num >= problem_count)
 						{
-							printf("\n정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.\n");
+							gotoxy(30, 7);
+							printf("정해진 문제 수 내에 깨지 못했습니다. 안타깝네요.");
 							Sleep(1000);
 							x = 1;
 						}
@@ -234,13 +285,30 @@ void game_start(int d)
 					system("cls");
 					memset(input, 0, sizeof(input));
 					fflush(stdin);
-					printf("단어 수: %d/%d\n", problem_num + 1, problem_count);
+					system("cls");
+					screen_deco();
+					gotoxy(2, 1);
+					if (d == 1)
+						printf("난이도: Easy | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+					if (d == 2)
+						printf("난이도: Normal | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+					if (d == 3)
+						printf("난이도: Hard | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
+					gotoxy(2, 2);
+					printf("남은 시간: %d초", (time_limit - (clock() - s_time)) / 1000);
+					gotoxy(5, 5);
+					printf("%s", input);
 					show_string(word, d);
 					s_time = clock();
 					j = 0;
 				}
 				else
-					printf("\n글자수가 부족합니다.\n");
+				{
+					gotoxy(30, 7);
+					printf("글자수가 부족합니다.");
+					gotoxy(5, 5);
+				}
+			}
 		}
 
 		if (x == 1)
@@ -252,7 +320,10 @@ void game_start(int d)
 		if(x ==0 && goal_score <= score)
 		{
 			system("cls");
-			game_start(d + 1);
+			if (d <= 3)
+				game_start(d);
+			else
+				game_start_infinite();
 			break;
 		}
 	}
