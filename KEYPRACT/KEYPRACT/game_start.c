@@ -213,7 +213,7 @@ void game_start(int d)
 				if (game_result == 2 || game_result == 1)
 					return 0;
 				if (game_result == 0)
-					s_time += (sq_time - so_time); //게임 재개시 시간 보정
+					s_time += 1000+(sq_time - so_time); //게임 재개시 시간 보정
 			}
 			if (j < size)
 			{

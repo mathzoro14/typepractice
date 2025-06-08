@@ -203,7 +203,7 @@ void tower_defence()
 				if (game_result == 2 || game_result == 1)
 					return 0;
 				if(game_result == 0)
-					sttime += (sq_time - so_time);
+					sttime += 1000+(sq_time - so_time);
 			}
 			if (((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) && j < 10)
 			{

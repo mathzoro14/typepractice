@@ -148,7 +148,7 @@ int game_start_infinite()
 					if (game_result == 2 || game_result == 1)
 						return 0;
 					if(game_result == 0)
-						s_time += (sq_time - so_time);
+						s_time += 1000+(sq_time - so_time);
 				}
 				if (ch == 8 && j > 0) 
 				{
