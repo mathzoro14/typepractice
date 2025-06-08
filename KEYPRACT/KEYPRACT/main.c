@@ -23,7 +23,7 @@ int main()
 			else if (difficulty < 4)
 				game_start(difficulty);
 			else
-				tower_deffence();
+				tower_defence();
 		}
 	}
 }
