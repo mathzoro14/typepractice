@@ -404,7 +404,21 @@ int show_menu(int* difficulty)
 							gotoxy(53, 10);
 							printf("< [%s] >", mode_list[num1]);
 							gotoxy(57, 15);
-							SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+							switch (*difficulty)
+							{
+							case 1:
+								SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+								break;
+							case 2:
+								SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+								break;
+							case 3:
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+								break;
+							case 4:
+								SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
+								break;
+							}
 							printf("[%s]", difficulty_list[*difficulty - 1]);
 							SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 							gotoxy(x, y + num * (3 + screen * 2));
