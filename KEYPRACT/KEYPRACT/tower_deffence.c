@@ -126,7 +126,7 @@ void tower_deffence()
 		if (life <= 0)
 		{
 			system("cls");
-			printf("game over\n");
+			game_over_screen();
 			return;
 		}
 		if (END < clock() - sttime)

@@ -113,11 +113,9 @@ int show_menu(int* difficulty)
 	char ch, * difficulty_list[] = {"Easy", "Normal", "Hard", "INFINITE"}; //난이도 리스트
 	char* mode_list[] = { "일반 모드", "디펜스 모드" }; //모드 리스트
 
-	num = 0;
-	num1 = 0;
-	screen = 0;
-	x = 53;
-	y = 14;
+	if(*difficulty >= 5)
+		*difficulty = 1; // 난이도 초기화
+
 	menu1();
 	gotoxy(x, y + num * 3);
 	printf(">");
