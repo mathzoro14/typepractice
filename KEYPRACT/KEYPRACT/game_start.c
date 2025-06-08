@@ -37,6 +37,16 @@ void wrong_sound()
 	Sleep(500);
 }
 
+void game_over_screen()
+{
+	system("cls");
+	screen_deco();
+	gotoxy(57, 15);
+	printf("Game Over");
+	Sleep(1500);
+	system("cls");
+}
+
 void game_start(int d) 
 {
 	game_ready();
@@ -235,7 +245,7 @@ void game_start(int d)
 
 		if (x == 1)
 		{
-			system("cls");
+			game_over_screen();
 			break;
 		}
 

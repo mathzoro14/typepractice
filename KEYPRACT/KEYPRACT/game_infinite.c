@@ -93,13 +93,9 @@ int game_start_infinite()
 		{
 			system("cls");
 			printf("게임 오버!\n최종 점수:%d\n", score);
-			printf("메인 메뉴로 돌아가려면 y를 누르세요: ");
-			ch = getchar();
-			if (ch == 'y' || ch == 'Y') {
-				system("cls");
-				return 0;
-			}
-			else return -1;
+			Sleep(1000);
+			game_over_screen();
+			return 0;
 		}
 	}
 
