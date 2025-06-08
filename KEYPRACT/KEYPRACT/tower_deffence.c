@@ -112,7 +112,7 @@ void tower_deffence()
 	{
 		l[i].last_generate_time = clock();
 		l[i].cooltime = 1000 * i;
-		l[i].speed = 2+wave/5;
+		l[i].speed = 3+wave/5;
 	}
 	l[0].cooltime = 5000;
 	LIST* head = generate(NULL);
@@ -136,7 +136,7 @@ void tower_deffence()
 			{
 				l[i].last_generate_time = clock();
 				l[i].cooltime = 3000 * i + rand() % 2000;
-				l[i].speed = 2+wave/5;
+				l[i].speed = 3+wave/5;
 			}
 			//1번 노드 생성
 			head = generate(NULL);

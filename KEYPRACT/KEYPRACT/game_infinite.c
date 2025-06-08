@@ -89,11 +89,12 @@ int game_start_infinite()
 				}
 			}
 		}
-		if (fail > 3) 
+		if (fail >= 3) 
 		{
-			system("cls");
 			printf("게임 오버!\n최종 점수:%d\n", score);
 			Sleep(1000);
+			system("cls");
+			
 			game_over_screen();
 			return 0;
 		}
