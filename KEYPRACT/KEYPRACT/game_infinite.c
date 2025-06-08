@@ -11,6 +11,9 @@ int game_pause(int d)
 	printf("다시 하기");
 	gotoxy(50, 16);
 	printf("나가기");
+
+	gotoxy(2, 2);
+	printf("엔터: 확인, 위, 아래 방향키: 이동");
 	gotoxy(48, 10);
 	printf(">");
 	while (1)
@@ -43,7 +46,7 @@ int game_pause(int d)
 			else if (ch == 13) // Enter 키
 			{
 				if (num == 0)
-					return;
+					return 0;
 				
 				else if (num == 1)
 				{
@@ -139,9 +142,13 @@ int game_start_infinite()
 				if (ch == 27)
 				{
 					int game_result;
+					int so_time = clock();
 					game_result = game_pause(4);
+					int sq_time = clock();
 					if (game_result == 2 || game_result == 1)
 						return 0;
+					if(game_result == 0)
+						s_time += (sq_time - so_time);
 				}
 				if (ch == 8 && j > 0) 
 				{

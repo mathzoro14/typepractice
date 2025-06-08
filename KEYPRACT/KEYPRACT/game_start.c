@@ -179,6 +179,7 @@ void game_start(int d)
 				j = 0;
 				gotoxy(2, 2);
 				printf("남은 시간: %d초", (time_limit - (clock() - s_time)) / 1000);
+				gotoxy(5, 5);
 			}
 			else
 			{
@@ -206,9 +207,13 @@ void game_start(int d)
 			if (ch == 27)
 			{
 				int game_result;
+				int so_time = clock();
 				game_result = game_pause(d);
+				int sq_time = clock();
 				if (game_result == 2 || game_result == 1)
 					return 0;
+				if (game_result == 0)
+					s_time += (sq_time - so_time); //게임 재개시 시간 보정
 			}
 			if (j < size)
 			{
@@ -296,9 +301,9 @@ void game_start(int d)
 						printf("난이도: Hard | 점수: %d | 목표 점수: %d | 단어 수: %d/%d", score, goal_score, problem_num + 1, problem_count);
 					gotoxy(2, 2);
 					printf("남은 시간: %d초", (time_limit - (clock() - s_time)) / 1000);
+					show_string(word, d);
 					gotoxy(5, 5);
 					printf("%s", input);
-					show_string(word, d);
 					s_time = clock();
 					j = 0;
 				}
