@@ -115,9 +115,9 @@ void game_start(int d)
 					input[size] = 0;
 					if (!strcmp(word, input))
 					{
+						score += CORRECT + (((time_limit - (clock() - s_time)) / 1000) * time_bonus);
 						corr_sound();
 						problem_num++;
-						score += CORRECT + ((( time_limit - (clock() - s_time)) / 1000) * time_bonus);
 						if ((goal_score - score) >= 0)
 						{
 							gotoxy(30, 7);
@@ -238,9 +238,9 @@ void game_start(int d)
 					input[size] = 0;
 					if (!strcmp(word, input))
 					{
+						score += CORRECT + (((time_limit - (clock() - s_time)) / 1000) * time_bonus);
 						corr_sound();
 						problem_num++;
-						score += CORRECT + ((( time_limit - (clock() - s_time)) / 1000) * time_bonus);
 						if ((goal_score - score) >= 0)
 						{
 							gotoxy(30, 7);
